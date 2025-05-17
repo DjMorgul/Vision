@@ -365,25 +365,6 @@ WindowList::Collapse(BListItem* collapseItem)
 }
 
 void
-WindowList::CollapseCurrentServer()
-{
-	int32 currentsel(CurrentSelection());
-	if (currentsel < 0)
-		return;
-
-	int32 serversel(GetServer(currentsel));
-
-	if (serversel < 0)
-		return;
-
-	WindowListItem* citem((WindowListItem*)ItemAt(serversel));
-	if (citem && (citem->Type() == WIN_SERVER_TYPE)) {
-		if (citem->IsExpanded())
-			Collapse(citem);
-	}
-}
-
-void
 WindowList::Expand(BListItem* expandItem)
 {
 	((WindowListItem*)expandItem)->SetSubStatus(-1);
@@ -391,7 +372,7 @@ WindowList::Expand(BListItem* expandItem)
 }
 
 void
-WindowList::ExpandCurrentServer()
+WindowList::CollapseOrExpandCurrentServer()
 {
 	int32 currentsel(CurrentSelection());
 	if (currentsel < 0)
@@ -399,7 +380,9 @@ WindowList::ExpandCurrentServer()
 
 	WindowListItem* citem((WindowListItem*)ItemAt(currentsel));
 	if (citem && (citem->Type() == WIN_SERVER_TYPE)) {
-		if (!citem->IsExpanded())
+		if (citem->IsExpanded())
+			Collapse(citem);
+		else
 			Expand(citem);
 	}
 }

@@ -92,8 +92,7 @@ public:
 	void Activate(int32);
 	void CloseActive();
 	void SelectLast();
-	void CollapseCurrentServer();
-	void ExpandCurrentServer();
+	void CollapseOrExpandCurrentServer();
 
 	void BlinkNotifyChange(int32, ServerAgent*);
 

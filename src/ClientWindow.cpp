@@ -227,14 +227,9 @@ ClientWindow::MessageReceived(BMessage* msg)
 			pWindowList()->MoveCurrentDown();
 		} break;
 
-		case M_COLLAPSE_NETWORK:
+		case M_COLLAPSE_OR_EXPAND_NETWORK:
 		{
-			pWindowList()->CollapseCurrentServer();
-		} break;
-
-		case M_EXPAND_NETWORK:
-		{
-			pWindowList()->ExpandCurrentServer();
+			pWindowList()->CollapseOrExpandCurrentServer();
 		} break;
 
 		case M_CW_UPDATE_STATUS:
@@ -594,10 +589,8 @@ ClientWindow::Init()
 						 new BMessage(M_NETWORK_UP), 'U', B_SHIFT_KEY));
 	fWindow->AddItem(item = new BMenuItem(B_TRANSLATE("Move network down"),
 						 new BMessage(M_NETWORK_DOWN), 'D', B_SHIFT_KEY));
-	fWindow->AddItem(item = new BMenuItem(B_TRANSLATE("Collapse network"),
-						 new BMessage(M_COLLAPSE_NETWORK), B_LEFT_ARROW));
-	fWindow->AddItem(item = new BMenuItem(B_TRANSLATE("Expand network"),
-						 new BMessage(M_EXPAND_NETWORK), B_RIGHT_ARROW));
+	fWindow->AddItem(item = new BMenuItem(B_TRANSLATE("Collapse or expand network"),
+						 new BMessage(M_COLLAPSE_OR_EXPAND_NETWORK), 'E'));
 	fWindow->AddSeparatorItem();
 	fWindow->AddItem(
 		item = new BMenuItem(B_TRANSLATE("Close this sub-window"), new BMessage(M_CW_ALTP), 'P'));

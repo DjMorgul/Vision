@@ -74,8 +74,8 @@ const uint32 M_SMART_UP_CLIENT = 0x1302;
 const uint32 M_SMART_DOWN_CLIENT = 0x1303;
 const uint32 M_NETWORK_CLIENT = 0x1304;
 const uint32 M_PREVIOUS_CLIENT = 0x1305;
-const uint32 M_COLLAPSE_NETWORK = 0x1306;
-const uint32 M_EXPAND_NETWORK = 0x1307;
+const uint32 M_COLLAPSE_OR_EXPAND_NETWORK = 0x1306;
+// 0x1307 available, it used to be M_EXPAND_NETWORK
 const uint32 M_NETWORK_UP = 0x1308;
 const uint32 M_NETWORK_DOWN = 0x1309;
 const uint32 M_SUBMIT = 0x1310;

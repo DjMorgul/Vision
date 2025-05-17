@@ -297,15 +297,17 @@ ClientAgentInputFilter::HandleKeys(BMessage* msg)
 				result = B_SKIP_MESSAGE;
 			} break;
 
-			case B_LEFT_ARROW:	// collapse current server (if expanded)
+			case B_LEFT_ARROW:
+			case B_RIGHT_ARROW:
 			{
-				winList->CollapseCurrentServer();
-				result = B_SKIP_MESSAGE;
+				BTextView* focusedTextView = dynamic_cast<BTextView*>(vision_app->pClientWin()->CurrentFocus());
+				if (focusedTextView) // move to start of word or previous word, or to end of word or next word
+					result = B_DISPATCH_MESSAGE; // Let the text view handle the message
 			} break;
 
-			case B_RIGHT_ARROW:	 // expand current server (if collapsed)
+			case 'E':	// collapse current server if expanded, or expand it if collapsed
 			{
-				winList->ExpandCurrentServer();
+				winList->CollapseOrExpandCurrentServer();
 				result = B_SKIP_MESSAGE;
 			} break;
 
